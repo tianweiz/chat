@@ -1,0 +1,47 @@
+<template name="chat">
+	<div class="chat">
+		<div class="chat-panel">
+			<ul>
+			{{#each allChatEntries}}
+				<li class="thread {{repliedByMe}}">
+					<div class="left">
+						<img class="avatar {{mentionedMe}} {{myPost}}" src="{{threadUserAvatar}}">
+					</div>
+					<div class="middle">
+						<div class="username">
+							{{threadUserName}}
+							{{#if isReply}}
+								&nbsp; <span class="mention">@{{replyToWho}}</span>
+							{{/if}}
+						</div>
+						<div class="content">
+							{{threadContent}} 
+						</div>
+					</div>	
+					<div class="right">
+						<div class="">
+							{{threadPostTime}}
+						</div>
+						<div class="reply">
+							{{#if currentUser}}
+								<i class="ss-reply">reply</i>
+							{{/if}}
+						</div>
+					</div>
+					<hidden class="property" tid="{{threadId}}" owner="{{threadOwner}}"></hidden>
+				</li>
+
+			{{/each}}
+			</ul>
+			{{#if currentUser}}
+				<div class="posting">
+					<div id="post-reply-title" class="reply"></div>
+			        <textarea type="text" id="chat-text" class="input-block-level" placeholder="Say something..." style="overflow: hidden; word-wrap: break-word; resize: none; height: 40px;"></textarea>
+			        <div id="clear-text"><i class="ss-icon">close</i></div>
+			        <div id="send-button">SEND</div>
+			        <hidden id="post-property"></hidden>
+			    </div>
+			{{/if}}
+		</div>
+	</div>
+</template>
